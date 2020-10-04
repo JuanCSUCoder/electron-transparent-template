@@ -4,7 +4,6 @@ import electron, { app, BrowserWindow } from 'electron';
 
 function createWindow () {
   setTimeout(() => {
-    // Crea la ventana del navegador.
 		const win = new BrowserWindow({
 			width: 800,
 			height: 600,
@@ -19,7 +18,6 @@ function createWindow () {
 			},
 		});
 
-		// y carga el index.html de la aplicación.
 		win.loadFile('../index.html');
 	},500)
 }
