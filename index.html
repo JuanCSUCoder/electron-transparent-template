@@ -67,7 +67,7 @@
 				height: 30px;
 				display: flex;
 				flex-direction: row;
-				background-color:rgba(128, 128, 128, 0.686);
+				background-color:rgba(128, 128, 128, 0);
 				align-items: center;
 				justify-content: space-around;
 			}
@@ -79,9 +79,10 @@
 				border-radius: 0;
 				margin: 0;
 				-webkit-app-region: no-drag;
+				transition: background-color 0.5s ease;
 			}
 			.icons > div > img:hover {
-				background-color: lightgray;
+				background-color: rgba(128, 128, 128, 0.686);
 			}
 			.container-max > .icons > .border {
 				border-radius:0;
