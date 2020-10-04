@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>App</title>
+		<style>
+			body {
+				background-color: rgba(255, 255, 255, 0);
+				opacity: 1;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+				font-size: 11px;
+			}
+			.container {
+				background-color: #ffffff00;
+				border-radius: 20px;
+				width: 100%;
+				height: 100vh;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			.container-max{
+				border-radius: 0px;
+			}
+			
+			.titlebar {
+				height: 30px;
+				background-color: rgba(128, 128, 128, 0.686);
+				flex-grow: 0;
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				-webkit-app-region: drag;
+			}
+			.content {
+				background-color: #ffffffdc;
+				flex-grow: 1;
+				width: 100%;
+				padding: 20px;
+				box-sizing: border-box;
+			}
+			.icons {
+				position: fixed;
+				top: 0;
+				right: 0;
+				height: 30px;
+				display: flex;
+				width: 99px;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-around;
+				-webkit-app-region: no-drag;
+			}
+			.border {
+				overflow: hidden;
+				border-top-right-radius: 20px;
+				width:99px;
+				height: 30px;
+				display: flex;
+				flex-direction: row;
+				background-color:rgba(128, 128, 128, 0.686);
+				align-items: center;
+				justify-content: space-around;
+			}
+			.icons > div > img {
+				width: 12px;
+				padding: 10.5px;
+				height: 30px;
+				background-color: rgba(255, 255, 255, 0);
+				border-radius: 0;
+				margin: 0;
+				-webkit-app-region: no-drag;
+			}
+			.icons > div > img:hover {
+				background-color: lightgray;
+			}
+			.container-max > .icons > .border {
+				border-radius:0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app-container" class="container">
+			<div class="titlebar">
+				<center><strong>Application Title</strong></center>
+			</div>
+			<div class="icons">
+				<div class="border">
+					<img src="./icons/mini.svg" alt="" onclick="minim()" />
+					<img src="./icons/maxmin.svg" onclick="max()" alt="" />
+        <img src="./icons/close.svg" onclick="remote.getCurrentWindow().close()" alt="" />
+				</div>
+			</div>
+			<div class="content">
+				<h1>Application</h1>
+			</div>
+		</div>
+		<script>
+      const remote = require('electron').remote;
+			var mainContainer = document.getElementById('app-container');
+			
+			remote.getCurrentWindow().on('maximize', function() {
+				mainContainer.classList.add('container-max')
+			})
+
+			remote.getCurrentWindow().on('unmaximize', function() {
+				mainContainer.classList.remove('container-max')
+			})
+
+			function max() {
+				if (!remote.getCurrentWindow().isMaximized()) {
+					console.log('Maximizing');
+					remote.getCurrentWindow().maximize();
+					mainContainer.classList.add('container-max')
+				} else {
+					console.log('UnMax');
+					remote.getCurrentWindow().unmaximize();
+					mainContainer.classList.remove('container-max')
+				}
+			}
+			function minim() {
+				console.log('Minimizing');
+				remote.getCurrentWindow().minimize();
+			}
+			function close() {
+				remote.getCurrentWindow().close();
+			}
+		</script>
+	</body>
+</html>
