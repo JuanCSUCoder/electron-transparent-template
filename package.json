@@ -1,0 +1,16 @@
+{
+  "name": "translucent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc && electron ./dist --enable-transparent-visuals"
+  },
+  "author": "Juan Camilo Sánchez Urrego <jcsu2019369@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "4.0.3",
+    "electron": "9.2.1"
+  }
+}
